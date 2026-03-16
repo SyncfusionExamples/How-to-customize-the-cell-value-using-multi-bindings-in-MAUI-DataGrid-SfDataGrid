@@ -1,13 +1,8 @@
 # How to customize the cell value using multi-bindings in .NET MAUI DataGrid?
 
-This sample demonstrates how to customize cell values using **MultiBinding** in a [.NET MAUI SfDataGrid](https://help.syncfusion.com/maui/datagrid/overview). It shows how to combine multiple data sources within a single cell to create enhanced, contextual displays. By using `IMultiValueConverter`, you can transform and combine cell data with other properties to modify the cell value dynamically.
+This sample demonstrates how to customize cell values using **MultiBinding** in a [.NET MAUI SfDataGrid](https://help.syncfusion.com/maui/datagrid/overview). It shows how to combine multiple data sources within a single cell to create enhanced, contextual displays. By using IMultiValueConverter, you can transform and combine cell data with other properties to modify the cell value dynamically.
 
 ## XAML
-
-The sample demonstrates two primary use cases:
-
-1. **Order ID with Payment Status**: Combines OrderID with IsPaid status to display payment processing state
-2. **Ship Country with Ship City**: Combines country and city information in a single cell
 
 ```xml
 <ContentPage.Resources>
@@ -15,7 +10,6 @@ The sample demonstrates two primary use cases:
 </ContentPage.Resources>
 
 <syncfusion:SfDataGrid x:Name="dataGrid"
-                       SortingMode="None"
                        ItemsSource="{Binding OrderInfoCollection}">
 
     <syncfusion:SfDataGrid.Columns>
