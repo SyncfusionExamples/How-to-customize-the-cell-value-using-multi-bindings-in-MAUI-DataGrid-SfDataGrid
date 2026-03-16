@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SfDataGrid_Sample.MainPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:SfDataGrid_Sample">
+
+    <ContentPage.BindingContext>
+        <local:OrderInfoRepository />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <local:CellValueFormatConverter x:Key="CellValueFormatConverter" />
+    </ContentPage.Resources>
+
+    <syncfusion:SfDataGrid x:Name="dataGrid"
+                           SortingMode="None"
+                           ItemsSource="{Binding OrderInfoCollection}">
+
+        <syncfusion:SfDataGrid.Columns>
+            <syncfusion:DataGridNumericColumn HeaderText="Order ID" 
+                                              Format="0"
+                                              MappingName="OrderID" 
+                                              Width="150">
+                <syncfusion:DataGridNumericColumn.DisplayBinding>
+                    <MultiBinding Converter="{StaticResource CellValueFormatConverter}"
+                                  ConverterParameter="OrderWithStatus">
+                        <Binding Path="OrderID" />
+                        <Binding Path="IsPaid" />
+                    </MultiBinding>
+                </syncfusion:DataGridNumericColumn.DisplayBinding>
+            </syncfusion:DataGridNumericColumn>
+
+            <syncfusion:DataGridTextColumn  HeaderText="Customer ID"
+                                            MappingName="CustomerID"
+                                            Width="150" />
+
+            <syncfusion:DataGridTextColumn  HeaderText="Ship Country"
+                                            MappingName="ShipCountry"
+                                            Width="200">
+                <syncfusion:DataGridTextColumn.DisplayBinding>
+                    <MultiBinding Converter="{StaticResource CellValueFormatConverter}"
+                                  ConverterParameter="CountryWithCity">
+                        <Binding Path="ShipCountry" />
+                        <Binding Path="ShipCity" />
+                    </MultiBinding>
+                </syncfusion:DataGridTextColumn.DisplayBinding>
+            </syncfusion:DataGridTextColumn>
+
+            <syncfusion:DataGridTextColumn  HeaderText="Customer Name"
+                                            MappingName="Customer"
+                                            Width="150" />
+
+            <syncfusion:DataGridTextColumn  HeaderText="Ship City"
+                                            MappingName="ShipCity"
+                                            Width="150" />
+        </syncfusion:SfDataGrid.Columns>
+    </syncfusion:SfDataGrid>
+
+</ContentPage>
